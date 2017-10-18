@@ -1,0 +1,3 @@
+# Odin Project Advanced Ruby Programming Practical
+
+My_enumerable overwrites common enumerable functions (#each, #map, #select, #each_index etc)
