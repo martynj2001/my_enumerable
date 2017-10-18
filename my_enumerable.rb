@@ -4,7 +4,7 @@ module Enumerable
 
 	def my_each 
 		i = 0
-		(self.length - 1).times do
+		self.length.times do
 			yield(self[i])
 			i += 1
 		end
@@ -12,14 +12,14 @@ module Enumerable
 		
 	def my_each_with_index
 		i = 0
-		(self.length -1).times do
+		self.length.times do
 			yield(self[i], i)	
 			i += 1
 		end
 	end #my_each_index
 	
 	def my_select
-		newArr[]
+		newArr = []
 		self.my_each do |i|
 			if yield(i)
 				newArr << i
@@ -37,7 +37,7 @@ module Enumerable
 				end
 			end
 		found	
-	end
+	end #my_all?
 	
 	
 	
