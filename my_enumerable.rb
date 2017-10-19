@@ -81,10 +81,18 @@ module Enumerable
 		newArr
 	end #my_map
 	
-	def my_inject
-		
-		self.my_each do |i|
-			yield(i)
+	def my_inject start
+	
+		if start
+			self.my_each do |i|
+				start = yield(start, i)
+			end
+		else
+			start = self[0]
+			self.my_each do |i|
+				start = yield(start, i)
+			end
+		end 
 	
 	end #my_inject
 	
