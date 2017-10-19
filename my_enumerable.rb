@@ -39,7 +39,54 @@ module Enumerable
 		found	
 	end #my_all?
 	
+	def my_none?
+		none = true
+			self.my_each do |i|
+				if yield(i)
+					none = false
+					return found
+				end
+			end
+		none	
+	end #my_none?
 	
+	def my_count num
+		counter = 0	
+		if num == nil
+			return self.length
+		elsif block_given?
+			self.my_each do |i|
+				if yield(i)
+					counter += 1
+				end
+			end
+		else
+			self.my_each do |i|
+				if i == num
+					counter += 1
+				end
+			end
+		end
+		counter	
+	end #my_count
+	
+	def my_map
+		newArr = []
+		self.my_each do |i|
+			elm = yield(i)
+			newArr << elm
+			#newArr << yeild(i)
+			end
+		end
+		newArr
+	end #my_map
+	
+	def my_inject
+		
+		self.my_each do |i|
+			yield(i)
+	
+	end #my_inject
 	
 	
 	
