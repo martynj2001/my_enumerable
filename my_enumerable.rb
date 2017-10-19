@@ -50,16 +50,17 @@ module Enumerable
 		none	
 	end #my_none?
 	
-	def my_count num
+	def my_count num = nil
 		counter = 0	
-		if num == nil
-			return self.length
-		elsif block_given?
+		if block_given?
 			self.my_each do |i|
 				if yield(i)
 					counter += 1
 				end
 			end
+		elsif 
+			num == nil
+			return self.length
 		else
 			self.my_each do |i|
 				if i == num
@@ -70,20 +71,26 @@ module Enumerable
 		counter	
 	end #my_count
 	
-	def my_map
+	def my_map proc = nil
 		newArr = []
-		self.my_each do |i|
-			elm = yield(i)
-			newArr << elm
-			#newArr << yeild(i)
+		if proc != nil
+			self.my_each do |i|
+				elm = proc.call(i)
+				newArr << elm
+				#newArr << yeild(i)
+			end
+		else
+			self.my_each do |i|
+				elm = yield(i)
+				newArr << elm
 			end
 		end
 		newArr
 	end #my_map
 	
-	def my_inject start
+	def my_inject start = nil
 	
-		if start
+		if start != nil
 			self.my_each do |i|
 				start = yield(start, i)
 			end
@@ -93,10 +100,16 @@ module Enumerable
 				start = yield(start, i)
 			end
 		end 
-	
+		start
 	end #my_inject
-	
-	
-	
-	
+
+	def multiply_els array
+		array.my_inject{|mult, i| mult * i}
+	end #multply_els
+
 end #Enumerable
+
+
+
+
+
